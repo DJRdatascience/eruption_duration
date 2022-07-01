@@ -32,7 +32,7 @@ if erupt_type == 'Event':
     df_volcano = df_volcano[ columns ].dropna(axis=0)
 
 volcano = st.sidebar.selectbox( 'Select a volcano',
-                                options=df_volcano.VolcanoName )
+                                options=df_volcano.volcanoname )
 
 if erupt_type == 'Event':
     explosive = st.sidebar.selectbox(   'Explosive?',
@@ -79,7 +79,7 @@ if gen_plot:
     model = joblib.load( model_select[erupt_type] )
     if erupt_type == 'Event':
         
-        volc_features = [ df_volcano[df_volcano.VolcanoName == volcano][c].value for c in columns[2:] ]
+        volc_features = [ df_volcano[df_volcano.volcanoname == volcano][c].value for c in columns[2:] ]
         features = [ yes_no[explosive], yes_no[continuous] ] + volc_features
     surv_func = model.predict_survival_function(features)
 
