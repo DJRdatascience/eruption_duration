@@ -101,5 +101,5 @@ if gen_plot:
 
     #left_column, middle_column, right_column = st.columns(3)
 
-    middle_column = st.columns(1)
-    middle_column.plotly_chart( fig_sf, use_container_width=True )
+    left_column, middle_column, right_column = st.columns(2)
+    left_column.plotly_chart( fig_sf, use_container_width=True )
