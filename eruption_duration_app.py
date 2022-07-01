@@ -92,9 +92,10 @@ if gen_plot:
         y = surv_func[0](surv_func[0].x),
         title='<b>Survivor function</b>',
         template='simple_white',
-        labels={'xaxis_title': 'Duration (days)', 'yaxis_title': 'Exceedance probability'},
+        labels={'xaxis_title': 'Duration (hours)', 'yaxis_title': 'Exceedance probability'},
         log_x=True
     )
+    fig_sf.update_layout(yaxis_range=[1E-3,1E3])
 
     #~~~~~~~~~~
     # Plot figures
