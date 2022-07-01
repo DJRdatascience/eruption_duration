@@ -95,7 +95,7 @@ if gen_plot:
         labels={'xaxis_title': 'Duration (hours)', 'yaxis_title': 'Exceedance probability'},
         log_x=True
     )
-    fig_sf.update_layout(yaxis_range=[1E-3,1E3])
+    fig_sf.update_layout(xaxis_range=[1E-3,1E3])
 
     #~~~~~~~~~~
     # Plot figures
