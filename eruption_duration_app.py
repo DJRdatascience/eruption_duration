@@ -84,7 +84,7 @@ if gen_plot:
     model = joblib.load( model_select[erupt_type] )
     if erupt_type == 'Event':
         volc_features = [ df_volcano[df_volcano.volcanoname == volcano][c].values[0] for c in columns ]
-        features = [ yes_no[explosive], yes_no[continuous] ] + volc_features
+        features = [ [ yes_no[explosive], yes_no[continuous] ] + volc_features ]
     surv_func = model.predict_survival_function(features)
 
     fig_sf = px.line(
