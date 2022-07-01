@@ -31,7 +31,7 @@ if erupt_type == 'Event':
                 'avgrepose', 'intermediate', 'felsic', 'summit_crater', 'h_bw', 'ellip']
     df_volcano = df_volcano[ columns ].dropna(axis=0)
 
-volc_list = df_volcano.volcanoname.values
+volc_list = df_volcano['volcanoname'].values
 volcano = st.sidebar.selectbox( 'Select a volcano',
                                 options=volc_list )
 
