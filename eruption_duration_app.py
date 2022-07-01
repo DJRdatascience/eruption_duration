@@ -92,7 +92,6 @@ if gen_plot:
         y = surv_func[0](surv_func[0].x),
         title='<b>Survivor function</b>',
         template='simple_white',
-        color='tab:red',
         labels={'xaxis_title': 'Duration (days)', 'yaxis_title': 'Exceedance probability'}
     )
 
