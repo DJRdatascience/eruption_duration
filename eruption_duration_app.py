@@ -37,7 +37,7 @@ else:
                 'intermediate', 'felsic', 'summit_crater', 'h_bw', 'ellip' ]
     df_volcano.dropna( subset=columns, how='any', axis=0, inplace=True )
 
-volc_list = df_volcano['volcanoname'].values
+volc_list = df_volcano['volcanoname'].str.capitalize().values
 volcano = st.sidebar.selectbox( 'Select a volcano',
                                 options=volc_list )
 
