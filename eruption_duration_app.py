@@ -39,7 +39,7 @@ else:
 
 volc_list = df_volcano['volcanoname'].str.capitalize().values
 volcano = st.sidebar.selectbox( 'Select a volcano',
-                                options=volc_list )
+                                options=volc_list ).lower()
 
 if erupt_type == 'Event':
     explosive = st.sidebar.selectbox(   'Explosive?',
