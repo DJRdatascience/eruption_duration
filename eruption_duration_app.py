@@ -100,8 +100,10 @@ if gen_plot:
         y = surv_func[0](surv_func[0].x),
         title='<b>Survivor function</b>',
         template='simple_white',
-        log_x=True
+        log_x=True,
+        
     )
+    fig_sf.update_traces(line={"shape": 'hv'})
     fig_sf.update_layout(
         xaxis_range=[-3,3],
         xaxis={'title_text': 'Duration (hours)'},
