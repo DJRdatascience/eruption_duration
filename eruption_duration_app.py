@@ -15,7 +15,7 @@ st.set_page_config( page_title='Eruptive Active Duration',
 # LOAD DATA
 #####################################################################################
 
-df_volcano = pd.read_csv( 'volc_data.csv', encoding='ANSI' )
+df_volcano = pd.read_feather( 'volc_data.feather' )
 
 #####################################################################################
 # SIDEBAR
