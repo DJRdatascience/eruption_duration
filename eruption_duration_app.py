@@ -23,6 +23,8 @@ df_volcano = pd.read_feather( 'volc_data.feather' )
 
 st.sidebar.header('Select filters')
 
+print(df_volcano.columns)
+
 erupt_type = st.sidebar.selectbox(  'Eruptive activity type',
                                     options=['Event','Eruption'] )
 
