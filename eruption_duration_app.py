@@ -30,7 +30,12 @@ erupt_type = st.sidebar.selectbox(  'Eruptive activity type',
 if erupt_type == 'Event':
     columns = [ 'stratovolcano', 'dome', 'lava_cone', 'subduction', 'continental', 'elevation', 
                 'avgrepose', 'intermediate', 'felsic', 'summit_crater', 'h_bw', 'ellip']
-    #df_volcano = df_volcano[ columns ].dropna(axis=0)
+    df_volcano.dropna( subset=columns, how='any', axis=0, inplace=True )
+else:
+    columns = [ 'stratovolcano', 'caldera', 'dome', 'complex', 'lava_cone', 'compound', 'subduction', 'rift',
+                'intraplate', 'continental', 'ctcrust1', 'elevation', 'volume', 'eruptionssince1960', 'avgrepose', 'mafic',
+                'intermediate', 'felsic', 'summit_crater', 'h_bw', 'ellip' ]
+    df_volcano.dropna( subset=columns, how='any', axis=0, inplace=True )
 
 volc_list = df_volcano['volcanoname'].values
 volcano = st.sidebar.selectbox( 'Select a volcano',
@@ -42,8 +47,9 @@ if erupt_type == 'Event':
     continuous = st.sidebar.selectbox(  'Continuous?',
                                         options=['Yes','No'] )
 else:
-    TFC = [0,1]
-
+    explosive = st.sidebar.selectbox(   'VEI',
+                                        options=[ i for i in range(6) ] )
+    #continuous = st.sidebar.text_input(  'Repose duration (days)', '10' )
 
 gen_plot = st.sidebar.button('Generate plot')
 
@@ -83,19 +89,23 @@ if gen_plot:
     yes_no = {'No': 0, 'Yes': 1}
     model = joblib.load( model_select[erupt_type] )
     if erupt_type == 'Event':
-        volc_features = [ df_volcano[df_volcano.volcanoname == volcano][c].values[0] for c in columns ]
-        features = [ [ yes_no[explosive], yes_no[continuous] ] + volc_features ]
-    surv_func = model.predict_survival_function(features)
+        features = [ yes_no[explosive], yes_no[continuous] ]
+    else:
+        features = [ int(explosive) ]
+    features += [ df_volcano[df_volcano.volcanoname == volcano][c].values[0] for c in columns ]
+    surv_func = model.predict_survival_function( [features] )
 
     fig_sf = px.line(
         x = surv_func[0].x/(60*60),
         y = surv_func[0](surv_func[0].x),
         title='<b>Survivor function</b>',
         template='simple_white',
-        labels={'xaxis_title': 'Duration (hours)', 'yaxis_title': 'Exceedance probability'},
         log_x=True
     )
-    fig_sf.update_layout(xaxis_range=[-3,3])
+    fig_sf.update_layout(
+        xaxis_range=[-3,3],
+        xaxis={'title_text': 'Duration (hours)'},
+        yaxis={'title_text': 'Exceedance probability'} )
 
     #~~~~~~~~~~
     # Plot figures
