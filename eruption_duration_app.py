@@ -23,7 +23,6 @@ df_volcano = pd.read_feather( 'volc_data.feather' )
 
 st.sidebar.header('Select filters')
 
-print(df_volcano.columns)
 
 erupt_type = st.sidebar.selectbox(  'Eruptive activity type',
                                     options=['Event','Eruption'] )
@@ -31,7 +30,7 @@ erupt_type = st.sidebar.selectbox(  'Eruptive activity type',
 if erupt_type == 'Event':
     columns = [ 'stratovolcano', 'dome', 'lava_cone', 'subduction', 'continental', 'elevation', 
                 'avgrepose', 'intermediate', 'felsic', 'summit_crater', 'h_bw', 'ellip']
-    df_volcano = df_volcano[ columns ].dropna(axis=0)
+    #df_volcano = df_volcano[ columns ].dropna(axis=0)
 
 volc_list = df_volcano['volcanoname'].values
 volcano = st.sidebar.selectbox( 'Select a volcano',
