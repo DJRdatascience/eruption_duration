@@ -31,8 +31,9 @@ if erupt_type == 'Event':
                 'avgrepose', 'intermediate', 'felsic', 'summit_crater', 'h_bw', 'ellip']
     df_volcano = df_volcano[ columns ].dropna(axis=0)
 
+volc_list = df_volcano.volcanoname.values
 volcano = st.sidebar.selectbox( 'Select a volcano',
-                                options=df_volcano.volcanoname.unique() )
+                                options=volc_list )
 
 if erupt_type == 'Event':
     explosive = st.sidebar.selectbox(   'Explosive?',
