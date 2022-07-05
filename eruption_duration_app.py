@@ -71,7 +71,7 @@ st.markdown('---')
 #------------------------------------------------------------------------------------
 model_select = { 'Event': 'event_gb.joblib', 'Eruption': 'eruption_gb.joblib' }
 x_axis_title = { 'Event': 'Duration (hours)', 'Eruption': 'Duration (days)' }
-x_axis_range = { 'Event': [-3,3], 'Eruption': [0,4] }
+x_axis_range = { 'Event': [-3,3], 'Eruption': [0,5] }
 factor = { 'Event': 1/(60*60), 'Eruption': 1 }
 yes_no = {'No': 0, 'Yes': 1}
 
