@@ -85,6 +85,7 @@ st.markdown('---')
 #------------------------------------------------------------------------------------
 model_select = { 'Event': 'event_gb.joblib', 'Eruption': 'eruption_gb.joblib' }
 x_axis_title = { 'Event': 'Duration (hours)', 'Eruption': 'Duration (days)' }
+x_axis_range = { 'Event': [-3,3], 'Eruption': [0,5] }
 factor = { 'Event': 1/(60*60), 'Eruption': 1 }
 yes_no = {'No': 0, 'Yes': 1}
 
@@ -107,7 +108,7 @@ if gen_plot:
     )
     fig_sf.update_traces(line={"shape": 'hv'})
     fig_sf.update_layout(
-        xaxis_range=[-3,3],
+        xaxis_range=x_axis_range[erupt_type],
         xaxis={'title_text': x_axis_title[erupt_type]},
         yaxis={'title_text': 'Exceedance probability'} )
 
