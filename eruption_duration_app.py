@@ -83,10 +83,12 @@ st.markdown('---')
 #------------------------------------------------------------------------------------
 # Bar plots
 #------------------------------------------------------------------------------------
+model_select = { 'Event': 'event_gb.joblib', 'Eruption': 'eruption_gb.joblib' }
+x_axis_title = { 'Event': 'Duration (hours)', 'Eruption': 'Duration (days)' }
+factor = { 'Event': 1/(60*60), 'Eruption': 1 }
+yes_no = {'No': 0, 'Yes': 1}
 
 if gen_plot:
-    model_select = { 'Event': 'event_gb.joblib', 'Eruption': 'eruption_gb.joblib' }
-    yes_no = {'No': 0, 'Yes': 1}
     model = joblib.load( model_select[erupt_type] )
     if erupt_type == 'Event':
         features = [ yes_no[explosive], yes_no[continuous] ]
@@ -96,7 +98,7 @@ if gen_plot:
     surv_func = model.predict_survival_function( [features] )
 
     fig_sf = px.line(
-        x = surv_func[0].x/(60*60),
+        x = surv_func[0].x * factor[erupt_type],
         y = surv_func[0](surv_func[0].x),
         title='<b>Survivor function</b>',
         template='simple_white',
@@ -106,7 +108,7 @@ if gen_plot:
     fig_sf.update_traces(line={"shape": 'hv'})
     fig_sf.update_layout(
         xaxis_range=[-3,3],
-        xaxis={'title_text': 'Duration (hours)'},
+        xaxis={'title_text': x_axis_title[erupt_type]},
         yaxis={'title_text': 'Exceedance probability'} )
 
     #~~~~~~~~~~
