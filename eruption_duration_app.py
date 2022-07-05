@@ -64,20 +64,6 @@ st.markdown( '###' )
 # Top section
 #------------------------------------------------------------------------------------
 
-left_column, middle_column, right_column = st.columns(3)
-with left_column:
-    st.subheader('Open Rate')
-    st.subheader('1')
-    #st.markdown( '### <font color="#D62728">'+str(round(open_rate, 1))+' %</font> ('+str(round(open_rate_total, 1))+' % avg)', unsafe_allow_html=True )
-with middle_column:
-    st.subheader('Click Per Open Rate')
-    st.subheader('1')
-    #st.markdown( '### <font color="#D62728">'+str(round(click_rate, 2))+' %</font> ('+str(round(click_rate_total, 2))+' % avg)', unsafe_allow_html=True )
-with right_column:
-    st.subheader('Donations')
-    st.subheader('1')
-    #st.markdown( '### <font color="#D62728">\$'+str(round(raised))+' </font> of $'+str(round(raised_total))+' (total)', unsafe_allow_html=True )
-
 st.markdown('---')
 
 #------------------------------------------------------------------------------------
@@ -85,7 +71,7 @@ st.markdown('---')
 #------------------------------------------------------------------------------------
 model_select = { 'Event': 'event_gb.joblib', 'Eruption': 'eruption_gb.joblib' }
 x_axis_title = { 'Event': 'Duration (hours)', 'Eruption': 'Duration (days)' }
-x_axis_range = { 'Event': [-3,3], 'Eruption': [0,5] }
+x_axis_range = { 'Event': [-3,3], 'Eruption': [0,4] }
 factor = { 'Event': 1/(60*60), 'Eruption': 1 }
 yes_no = {'No': 0, 'Yes': 1}
 
